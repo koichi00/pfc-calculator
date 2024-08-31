@@ -29,5 +29,5 @@ export async function POST(req: NextRequest) {
     .eq("id", 1)
     .single();
 
-  return NextResponse.json({ message: "test" });
+  return NextResponse.json({ message: "updated" });
 }

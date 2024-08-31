@@ -1,5 +1,6 @@
 import { createClient } from "@/util/supabase/sever";
 import MyForm from "./_components/updateFrom";
+import UpdateTarget from "./_components/upadateTarget";
 
 export default async function Home() {
   const supabase = createClient();
@@ -23,6 +24,9 @@ export default async function Home() {
           <div className="text-2xl font-bold">
             {profile.total_cal ?? 0}
             <span className="text-lg">cal</span>
+          </div>
+          <div className="text-[12px] text-red-600 mt-1">
+            残り{profile.target_cal - profile.total_cal}cal
           </div>
         </div>
       </div>
@@ -57,6 +61,7 @@ export default async function Home() {
         </div>
       </div>
       <MyForm />
+      <UpdateTarget />
     </main>
   );
 }

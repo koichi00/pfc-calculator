@@ -25,7 +25,7 @@ export default function Myform() {
   };
   return (
     <form
-      className="border border-slate-400 rounded-md py-4 px-4 mt-1"
+      className="border border-slate-400 rounded-md py-4 px-4 mt-1 bg-white"
       onSubmit={handleSubmit}
     >
       <div className="lg:flex md:justify-around md:gap-1">
