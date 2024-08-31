@@ -16,17 +16,17 @@ export default async function Home() {
           <div className="font-sm font-bold">Target</div>
           <div className="text-2xl font-bold">
             {profile.target_cal}
-            <span className="text-lg">cal</span>
+            <span className="text-lg">kcal</span>
           </div>
         </div>
         <div className="pt-2">
           <div className="font-sm font-bold">Total</div>
           <div className="text-2xl font-bold">
             {profile.total_cal ?? 0}
-            <span className="text-lg">cal</span>
+            <span className="text-lg">kcal</span>
           </div>
           <div className="text-[12px] text-red-600 mt-1">
-            残り{profile.target_cal - profile.total_cal}cal
+            残り{profile.target_cal - profile.total_cal}kcal
           </div>
         </div>
       </div>
@@ -40,7 +40,7 @@ export default async function Home() {
           </p>
           <p className="text-sm font-bold text-gray-700">
             {profile.protein * 4}
-            <span className="text-[12px]">cal</span>
+            <span className="text-[12px]">kcal</span>
           </p>
         </div>
         <div className="flex-1 border-slate-400 border rounded-md py-3 px-1 bg-yellow-200 text-center flex flex-col items-center">
@@ -48,7 +48,7 @@ export default async function Home() {
           <p className="text-2xl font-bold">{profile.fat}</p>
           <p className="text-sm font-bold text-gray-700">
             {profile.fat * 9}
-            <span className="text-[12px]">cal</span>
+            <span className="text-[12px]">kcal</span>
           </p>
         </div>
         <div className="flex-1 border-slate-400 border rounded-md py-3 px-1 bg-orange-200 text-center flex flex-col items-center">
@@ -56,7 +56,7 @@ export default async function Home() {
           <p className="text-2xl font-bold">{profile.carbo}</p>
           <p className="text-sm font-bold text-gray-700">
             {profile.carbo * 4}
-            <span className="text-[12px]">cal</span>
+            <span className="text-[12px]">kcal</span>
           </p>
         </div>
       </div>
