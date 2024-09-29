@@ -3,6 +3,13 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
   const supabase = createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) {
+    throw new Error("ユーザーが認証されていません");
+  }
+
   const payload = await req.formData();
   const proteinValue = payload.get("protein");
   const fatValue = payload.get("fat");
@@ -12,22 +19,23 @@ export async function POST(req: NextRequest) {
   const protein = typeof proteinValue === "string" ? parseInt(proteinValue) : 0;
   const fat = typeof fatValue === "string" ? parseInt(fatValue) : 0;
   const carbo = typeof carboValue === "string" ? parseInt(carboValue) : 0;
+
   const { data: nowProfile } = await supabase
-    .from("profile")
+    .from("user_profile")
     .select("*")
-    .eq("id", 1)
     .single();
 
   const { data, error } = await supabase
-    .from("profile")
+    .from("user_profile")
     .update({
-      protein: nowProfile.protein + protein,
-      fat: nowProfile.fat + fat,
-      carbo: nowProfile.carbo + carbo,
-      total_cal: nowProfile.total_cal + protein * 4 + fat * 9 + carbo * 4,
+      protain: nowProfile?.protain! + protein,
+      fat: nowProfile?.fat! + fat,
+      carbo: nowProfile?.carbo! + carbo,
     })
-    .eq("id", 1)
+    .eq("id", user.id)
     .single();
+
+  console.log(error);
 
   return NextResponse.json({ message: "updated" });
 }

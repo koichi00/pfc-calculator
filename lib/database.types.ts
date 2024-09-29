@@ -9,41 +9,6 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      my_food: {
-        Row: {
-          carbo: number | null
-          created_at: string
-          fat: number | null
-          id: number
-          protein: number | null
-          user_id: string | null
-        }
-        Insert: {
-          carbo?: number | null
-          created_at?: string
-          fat?: number | null
-          id?: number
-          protein?: number | null
-          user_id?: string | null
-        }
-        Update: {
-          carbo?: number | null
-          created_at?: string
-          fat?: number | null
-          id?: number
-          protein?: number | null
-          user_id?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "my_food_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
       profile: {
         Row: {
           carbo: number | null
@@ -73,6 +38,41 @@ export type Database = {
           total_cal?: number | null
         }
         Relationships: []
+      }
+      user_profile: {
+        Row: {
+          carbo: number
+          created_at: string
+          fat: number
+          id: string
+          protain: number
+          target_cal: number
+        }
+        Insert: {
+          carbo?: number
+          created_at?: string
+          fat?: number
+          id: string
+          protain?: number
+          target_cal?: number
+        }
+        Update: {
+          carbo?: number
+          created_at?: string
+          fat?: number
+          id?: string
+          protain?: number
+          target_cal?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_profile_id_fkey"
+            columns: ["id"]
+            isOneToOne: true
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
       }
     }
     Views: {
