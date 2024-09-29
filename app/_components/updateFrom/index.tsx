@@ -8,7 +8,10 @@ export default function Myform() {
     e.preventDefault();
     const form = e.currentTarget;
     const formData = new FormData(form);
-    fetch("api/update", { method: "POST", body: formData })
+    fetch(`${process.env.NEXT_PUBLIC_BASEURL}/api/update`, {
+      method: "POST",
+      body: formData,
+    })
       .then((res) => {
         if (!res.ok) {
           throw new Error("エラーが発生しました。");
@@ -31,10 +34,10 @@ export default function Myform() {
       <div className="lg:flex md:justify-around md:gap-1">
         <label className="md:flex-1" htmlFor="p">
           <div className="mb-2">
-            <p className="mb-1 font-bold">Protein</p>
+            <p className="mb-1 font-bold">タンパク質</p>
             <input
               className="border rounded-md p-1 outline-none focus:bg-gray-50 w-full block"
-              type="number"
+              type="tel"
               name="protein"
               id="p"
               defaultValue={0}
@@ -43,10 +46,10 @@ export default function Myform() {
         </label>
         <label htmlFor="f" className="md:flex-1">
           <div className="mb-2">
-            <p className="mb-1 font-bold">Fat</p>
+            <p className="mb-1 font-bold">脂質</p>
             <input
               className="border rounded-md p-1 outline-none focus:bg-gray-50 w-full block"
-              type="number"
+              type="tel"
               name="fat"
               id="f"
               defaultValue={0}
@@ -55,10 +58,10 @@ export default function Myform() {
         </label>
         <label className="md:flex-1" htmlFor="c">
           <div className="mb-2">
-            <p className="mb-1 font-bold">Carbo</p>
+            <p className="mb-1 font-bold">炭水化物</p>
             <input
               className="border rounded-md p-1 outline-none focus:bg-gray-50 w-full block"
-              type="number"
+              type="tel"
               name="carbo"
               id="c"
               defaultValue={0}

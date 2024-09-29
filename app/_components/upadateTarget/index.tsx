@@ -8,7 +8,10 @@ export default function UpdateTarget() {
     e.preventDefault();
     const form = e.currentTarget;
     const formData = new FormData(form);
-    fetch("api/update-target", { method: "POST", body: formData })
+    fetch(`${process.env.NEXT_PUBLIC_BASEURL}/api/update-target`, {
+      method: "POST",
+      body: formData,
+    })
       .then((res) => {
         if (!res.ok) {
           throw new Error("エラーが発生しました。");

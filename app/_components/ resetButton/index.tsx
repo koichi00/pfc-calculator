@@ -1,26 +1,25 @@
 "use client";
-import { createBrowserClient } from "@supabase/ssr";
+import { useAuth } from "@/store/AuthContext";
+import { createClient } from "@/util/supabase/client";
 import { useRouter } from "next/navigation";
 
 export default function ResetButton() {
-  const supabase = createBrowserClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-  );
+  const { currentUser } = useAuth();
+  const supabase = createClient();
   const router = useRouter();
   const handleClick = async () => {
     const { data, error } = await supabase
-      .from("profile")
+      .from("user_profile")
       .update({
-        protein: 0,
+        protain: 0,
         fat: 0,
         carbo: 0,
-        total_cal: 0,
       })
-      .eq("id", 1)
+      .eq("id", currentUser?.id!)
       .single();
     router.refresh();
   };
+
   return (
     <button
       onClick={handleClick}
